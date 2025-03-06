@@ -40,7 +40,12 @@ function Loop(){
         //====================================================================================================
         
         for (let i = 0; i < arr.length; i++){
-            DrawCircle(arr[i], 5, "red")
+            // DrawCircle(arr[i], 5, "red")
+            FillCircle(arr[i], 5, "red")
+        }
+
+        for (let i=0; i<arr.length; i++){
+            DrawLine(arr[i], arr[(i+1)%arr.length], "black")
         }
 
         
