@@ -2,7 +2,16 @@ let msPrev = window.performance.now();
 const fps = 60;
 const msPerFrame = 1000 / fps;
 
+let arr = []; //push points here
 
+document.addEventListener("click", function(e){
+
+    let x = e.clientX;
+    let y = e.clientY;
+    
+    let point = new Vec2d(x,y)
+    arr.push(point)
+})
 
 function Loop(){
 
@@ -27,6 +36,13 @@ function Loop(){
             ctx.fillRect(0,0,canvas.width ,canvas.height);
             //make_checkerboard();
     
+
+        //====================================================================================================
+        
+        for (let i = 0; i < arr.length; i++){
+            DrawCircle(arr[i], 5, "red")
+        }
+
         
      
     }
