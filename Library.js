@@ -3,9 +3,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height=window.innerHeight;
 
-let msPrev = window.performance.now();
-const fps = 60;
-const msPerFrame = 1000 / fps;
+
 
 
 function make_checkerboard()
@@ -590,89 +588,9 @@ constructor(colgroup){
 
 //==============================Loop=====================================================
 
-let player_pos = new Vec2d(0,0);
-let s=50;
-let collidersArray=[];
-let player = new Collider(new Transform(player_pos , 0), [new Vec2d(-s,0), new Vec2d(0,-s) , new Vec2d(s,0)],[],0);
-let player2 = new Collider(new Transform(new Vec2d(canvas.width/2,canvas.height/2),0) , [new Vec2d(-s,-s), new Vec2d(-s,s) , new Vec2d(s,s), new Vec2d(2*s,-s)],[],0,30);
-    
-collidersArray.push(player);
-collidersArray.push(player2);
-
-
-
-//event listeners
-
-document.addEventListener("mousemove",(event)=>{
-
-    player.transform.position.x  = event.clientX;
-    player.transform.position.y  = event.clientY;
-
-})
-
-
-document.addEventListener("keydown",(event)=>{
-    if(event.key === "r" ){
-        player.transform.angle+=0.08;
-    }
-})
-   
-
-//Update Loop
-function Loop(){
-
-animationID = requestAnimationFrame(Loop);
-
-     //=======handle timing===================//
-    let msNow = window.performance.now();
-    let dt = msNow - msPrev;
-
-    if(dt < msPerFrame) return
-    let excessTime = dt % msPerFrame
-    msPrev = msNow - excessTime
-    msPrev = msNow;
-    dt=dt/1000;
-   
-   //==========================================//
-    
-   
-    //clear screen
-        ctx.beginPath();
-        ctx.fillStyle = "#202224";
-        ctx.fillRect(0,0,canvas.width ,canvas.height);
-        //make_checkerboard();
-
-        Step(collidersArray,dt);
-
-        let collision_polygon = Polygon_Clipping(player,player2);
-
-        let isColliding = Solve_SAT(player,player2,{});
 
 
 
 
-    //draw the polygons
-    for(let i=0;i<collidersArray.length;i++)
-    {
-        DrawPolygon3(collidersArray[i].transformedVertices,isColliding? 'blue':'#cc00cc');
-
-    }
-
-    //draw the collision polygon
-    if(collision_polygon.length)
-           DrawPolygon3(collision_polygon,'yellow');  
-
-    //draw circles on the contact points
-    collision_polygon.forEach((vertex)=>{
-        FillCircle(vertex,4,'red');
-    })
-   
-    
- 
-}
-//=======================================================================================     
-
-
-Loop();
 
 
