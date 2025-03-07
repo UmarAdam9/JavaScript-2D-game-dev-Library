@@ -4,7 +4,7 @@ All this is achieved using HTML canvas.
 
 All the functions are implemented in the Library.js file.
 
-The loop.js file contains the loop() function that is called everyframe so make sure to add all of the drawing code there.
+The loop.js file contains the loop() function that is called every frame so make sure to add all of the drawing code there.
 
 
 
