@@ -6,8 +6,7 @@ All the functions are implemented in the Library.js file.
 
 The loop.js file contains the loop() function that is called everyframe so make sure to add all of the drawing code there.
 
-The sample code demonstrates the use of SAT algorithm for collision detection and SutherLand Hodgeman Clipping algorithm for contact points generation.
-The polygons are also drawn using the drawing utility functions.
+
 
 ![image](https://github.com/user-attachments/assets/49dacd6e-878f-4d44-9c01-8692deb8629a)
 
